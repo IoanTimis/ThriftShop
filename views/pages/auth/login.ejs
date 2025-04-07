@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/general/head'); %>
+    <link rel="stylesheet" href="/general/css/login.css">
+</head>
+<body>
+
+<header>
+    <%- include('../../partials/general/header'); %>
+</header>
+
+<main>
+    <form action="/login" method="POST">
+        <input type="hidden" name="csrf_token" value="<%= csrf_token %>">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" name="email" placeholder="Introduceti email">
+        </div>
+        <div class="form-group">
+            <label for="password">Parola</label>
+            <input type="password" id="password" class="form-control" name="password" placeholder="Introduceti parola">
+        </div>
+        <!-- Folosim clasa personalizată -->
+        <button type="submit" class="custom-btn">Conectează-te</button>
+    </form>
+</main>
+
+
+<%- include('../../partials/general/footer'); %>
+
+
+</body>
+</html>
