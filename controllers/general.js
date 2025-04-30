@@ -141,5 +141,8 @@ module.exports = {
     contact,
     search,
     searchResults,
-    buyProduct,
+    viewCart,
+    addToCart,
+    removeFromCart,
+    checkout,
 };
