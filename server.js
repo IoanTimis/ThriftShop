@@ -57,6 +57,9 @@ sequelize.sync({ force: false })
     console.log('Database & tables created!');
 });
 
+const priceRoutes = require('./routes/price');
+app.use('/api/price', priceRoutes);
+
 const adminRoutes = require('./routes/admin');
 app.use('/admin', adminRoutes);
 
