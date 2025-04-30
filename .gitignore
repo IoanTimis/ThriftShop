@@ -18,3 +18,5 @@ nginx
 package-lock.json
 TODO
 
+#venv
+ml/venv

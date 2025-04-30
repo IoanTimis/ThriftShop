@@ -17,6 +17,6 @@ router.get('/cart', generalController.viewCart);
 router.get('/cart/add/:id', generalController.addToCart);
 router.get('/cart/remove/:id', generalController.removeFromCart);
 router.get('/checkout', generalController.checkout);
-router.get('/checkout/success', generalController.checkoutSuccess);
+router.get('/checkout/success', generalController.checkout);
 
 module.exports = router; 
