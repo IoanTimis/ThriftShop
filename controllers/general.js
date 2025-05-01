@@ -3,7 +3,6 @@ const usersBoughtProducts = require("../models/usersBoughtProducts");
 const userCartProducts = require("../models/userCartProducsts");
 const { Op } = require('sequelize');
 
-
 const home = (req, res) => {
     res.render('pages/generalPages/index');
 };
@@ -106,8 +105,6 @@ const removeFromCart = async (req, res) => {
     }
 };
 
-
-
 const checkout = async (req, res) => {
     const user_id = req.session.loggedInUser?.id;
 
@@ -134,6 +131,9 @@ const checkout = async (req, res) => {
     }
 };
 
+const chatbot = async (req, res) => {
+    res.render('pages/test/chatbot');
+}
 
 module.exports = {
     home,
@@ -145,4 +145,5 @@ module.exports = {
     addToCart,
     removeFromCart,
     checkout,
+    chatbot
 };

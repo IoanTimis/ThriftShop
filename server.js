@@ -60,6 +60,10 @@ sequelize.sync({ force: false })
 const priceRoutes = require('./routes/price');
 app.use('/api/price', priceRoutes);
 
+const chatbotRoutes = require('./routes/chatbot');
+app.use('/chatbot', chatbotRoutes);
+
+
 const adminRoutes = require('./routes/admin');
 app.use('/admin', adminRoutes);
 

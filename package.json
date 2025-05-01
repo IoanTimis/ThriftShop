@@ -13,6 +13,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.11.0",
     "npm": "^11.0.0",
+    "openai": "^4.96.2",
     "sanitize-html": "^2.13.0",
     "sequelize": "^6.37.3",
     "session-file-store": "^1.5.0"
