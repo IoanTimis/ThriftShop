@@ -63,7 +63,6 @@ app.use('/api/price', priceRoutes);
 const chatbotRoutes = require('./routes/chatbot');
 app.use('/chatbot', chatbotRoutes);
 
-
 const adminRoutes = require('./routes/admin');
 app.use('/admin', adminRoutes);
 
@@ -78,6 +77,8 @@ app.use('/', authRoutes);
 
 const generalRoutes = require('./routes/general');
 app.use('/', generalRoutes);
+
+
 
 app.listen(3001, () => {
   console.log('Server is running on port 3001');

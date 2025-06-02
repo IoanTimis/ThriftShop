@@ -1,0 +1,40 @@
+<!-- TODO: Darius in js (public general js) scriptul ce adauga mesaje dinamic, 
+ adauga in header link catre caht bot 
+cale bot : /chatbot/message
+css design 
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/general/head'); %>
+    <link rel="stylesheet" href="/general/css/chatBot.css">
+</head>
+<body>
+
+<header>
+    <%- include('../../partials/general/header'); %>
+</header>
+
+<main>
+    <div class="chatbot-container">
+        <div class="chatbot-messages" id="chatbotMessages">
+            <!-- Mesaje vor fi adăugate dinamic aici -->
+        </div>
+        <form id="chatbotForm">
+            <input type="hidden" name="csrf_token" value="<%= csrf_token %>">
+            <input type="text" id="chatbotInput" placeholder="Scrie un mesaj..." required>
+            <button type="submit" class="btn btn-primary">Trimite</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <%- include('../../partials/general/footer'); %>
+</footer>
+
+<script src="/general/js/chatBot.js"></script>
+</body>
+</html>
+

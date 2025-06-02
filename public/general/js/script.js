@@ -67,6 +67,12 @@ $(document).ready(function() {
         });
     });
 
+    
+    $('.estimateBtn').on('click', function() {
+        //TODO: esitmateMOdal.show();
+    });
+
+
     $('.addProductBtn').on('click', function() {
         $productModal.find('.modal-title').html('Adauga Produs');
         $productModal.find('.modal-footer button[type="submit"]').html('Adauga');
@@ -78,7 +84,7 @@ $(document).ready(function() {
         $productForm.find('input[name="price"]').val('');
 
         $productModal.modal('show');
-    });
+    });  
 
     $('.editProductBtn').on('click', function() {
         var id = $(this).data('id');
@@ -147,6 +153,51 @@ $(document).ready(function() {
     });
 
     // Search Products -----------------------------------------------------------------------------------------------------
-    
+
+
+    var $estimateModal = $('#estimateModal');
+    var $estimateForm = $('#estimateForm');
+
+    $($estimateForm).on('submit', function(e) {
+        e.preventDefault();
+
+        var url = '/api/price/estimate';
+        var method = 'POST';
+        var tip = $estimateForm.find('input[name="tip"]').val();
+        var brand = $estimateForm.find('input[name="brand"]').val();
+        var stare = $estimateForm.find('input[name="stare"]').val();
+        var pret_nou = $estimateForm.find('input[name="pret_nou"]').val();
+        var pret = $estimateForm.find('input[name="pret"]').val();
+
+        $.ajax({
+            url: url,
+            method: method,
+            data: {
+                csrf_token: csrf_token,
+                tip: tip,
+                brand: brand,
+                stare: stare,
+                pret_nou: pret_nou,
+                pret: pret
+            },
+            success: function(response) {
+                var html = 
+                `<div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Estimare Pret</h5>
+                            <p class="card-text">${response.estimatedPrice}</p>
+                        </div>
+                    </div>
+                </div>`;
+                $estimateModal.find('.modal-body').html(html);
+                console.log(response);
+            }, 
+            error: function(error) {
+                console.log(error);
+                alert('Eroare la estimarea prețului!');
+            }
+        });
+    });
 });
 

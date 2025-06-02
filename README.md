@@ -23,4 +23,9 @@ python3 predict_price.py <nume produs (tricou,bluza,etc)> <brand (nike,puma,etc)
 Exemplu: python3 predict_price.py tricou Nike nou 200
 
 
+Start server
+
+root folder: npm start server.js
+
+
 
