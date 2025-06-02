@@ -20,7 +20,7 @@ python3 train_model.py
 
 python3 predict_price.py <nume produs (tricou,bluza,etc)> <brand (nike,puma,etc)> <stare (nou, folosit, uzat)>
 
-Exemplu: python3 predict_price.py tricou Nike nou
+Exemplu: python3 predict_price.py tricou Nike nou 200
 
 
 
