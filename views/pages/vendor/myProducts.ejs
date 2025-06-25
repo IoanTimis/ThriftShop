@@ -15,7 +15,9 @@
       <button type="button" class="btn btn-primary addProductBtn">
         Adauga produs
       </button>
-      //TODO: daugam buton ce acticeaza modalul pentru estimare pret (.estimatePriceBtn)
+      <button type="button" class="btn btn-primary estimateBtn">
+        Estimeaza pret
+      </button>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -58,9 +60,46 @@
               </div>
           </div>
       </div>
+    </div>
 
-      <!-- TODO:Golbi copiaza modalul si formeaza-l pentru  estimare pret: tip,brand,stare,pret_nou,pret
-      Poti pune in modalul ce l creezi un div cu pret estimat: ${estimatedPrice} care il schimbi cu JS -->
+    <!-- Mutat modalul de estimare in afara modalului de produs -->
+    <div class="modal fade" id="estimateModal" tabindex="-1" aria-labelledby="estimateModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="estimateModalLabel">Estimează prețul produsului</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="estimateForm">
+              <input type="hidden" name="csrf_token" value="<%= csrf_token %>">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="coatType" placeholder="Tip produs" name="coatType" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="brand" placeholder="Brand produs" name="brand" required>
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="stareProdus" name="stareProdus" required>
+                  <option value="" disabled selected>Stare produs</option>
+                  <option value="nou">Nou</option>
+                  <option value="folosit">Folosit</option>
+                  <option value="uzat">Uzat</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="newProductPrice" placeholder="Preț din magazin" name="newProductPrice" required>
+              </div>
+            </form>
+            <div id="estimateResult" class="mt-3"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="estimateForm" class="btn btn-primary">Estimează</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 

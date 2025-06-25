@@ -5,7 +5,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 import joblib
 
+# Citire date si normalizare la lowercase
+
 df = pd.read_csv("data.csv")
+for col in ["tip", "brand", "stare"]:
+    df[col] = df[col].str.lower().str.strip()
 
 X = df[["tip", "brand", "stare", "pret_nou"]]
 y = df["pret"]

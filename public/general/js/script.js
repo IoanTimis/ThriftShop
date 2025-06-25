@@ -69,7 +69,10 @@ $(document).ready(function() {
 
     
     $('.estimateBtn').on('click', function() {
-        //TODO: esitmateMOdal.show();
+        $estimateModal.find('.modal-title').html('Estimeaza pretul produsului');
+        $estimateModal.find('.modal-body .estimate-result').remove(); 
+        $estimateForm.trigger('reset');
+        $estimateModal.modal('show');
     });
 
 
@@ -161,41 +164,29 @@ $(document).ready(function() {
     $($estimateForm).on('submit', function(e) {
         e.preventDefault();
 
-        var url = '/api/price/estimate';
-        var method = 'POST';
-        var tip = $estimateForm.find('input[name="tip"]').val();
-        var brand = $estimateForm.find('input[name="brand"]').val();
-        var stare = $estimateForm.find('input[name="stare"]').val();
-        var pret_nou = $estimateForm.find('input[name="pret_nou"]').val();
-        var pret = $estimateForm.find('input[name="pret"]').val();
+        var tip = $estimateForm.find('#coatType').val();
+        var brand = $estimateForm.find('#brand').val();
+        var stare = $estimateForm.find('#stareProdus').val();
+        var pret_nou = $estimateForm.find('#newProductPrice').val();
 
         $.ajax({
-            url: url,
-            method: method,
+            url: '/api/price/estimate',
+            method: 'POST',
             data: {
                 csrf_token: csrf_token,
                 tip: tip,
                 brand: brand,
                 stare: stare,
-                pret_nou: pret_nou,
-                pret: pret
+                pret_nou: pret_nou
             },
             success: function(response) {
-                var html = 
-                `<div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Estimare Pret</h5>
-                            <p class="card-text">${response.estimatedPrice}</p>
-                        </div>
-                    </div>
-                </div>`;
-                $estimateModal.find('.modal-body').html(html);
-                console.log(response);
-            }, 
+                var html = `<div class="estimate-result mt-3 alert alert-info text-center">Pret estimat: <b>${response.recommendedPrice ?? response.estimatedPrice ?? response.price ?? 'N/A'} lei</b></div>`;
+                $estimateModal.find('.modal-body').append(html);
+            },
             error: function(error) {
+                var html = `<div class="estimate-result mt-3 alert alert-danger text-center">Eroare la estimarea prețului!</div>`;
+                $estimateModal.find('.modal-body').append(html);
                 console.log(error);
-                alert('Eroare la estimarea prețului!');
             }
         });
     });
