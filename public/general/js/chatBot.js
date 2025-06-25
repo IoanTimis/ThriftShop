@@ -1,4 +1,3 @@
-//TODO: Darius: template pentru chatbot
 $(document).ready(function() {
     var $chatbotForm = $('#chatbotForm');
     var $chatbotMessages = $('#chatbotMessages');
@@ -7,25 +6,26 @@ $(document).ready(function() {
         e.preventDefault();
 
         var message = $('#chatbotInput').val();
+        var csrf_token = $("input[name='csrf_token']").val();
         if (!message.trim()) {
             alert('Mesajul nu poate fi gol!');
             return;
         }
 
-        // Adaugă mesajul utilizatorului în interfață
         $chatbotMessages.append(
             `<div class="message user-message">
                 <p>${message}</p>
             </div>`
         );
 
-        // Trimite mesajul către server
         $.ajax({
             url: '/chatbot/message',
             method: 'POST',
-            data: { message: message },
+            data: { 
+                message: message,
+                csrf_token: csrf_token
+             },
             success: function(response) {
-                // Adaugă răspunsul chatbot-ului în interfață
                 $chatbotMessages.append(
                     `<div class="message bot-message">
                         <p>${response.reply}</p>
@@ -38,7 +38,6 @@ $(document).ready(function() {
             }
         });
 
-        // Golește câmpul de input
         $('#chatbotInput').val('');
     });
 });

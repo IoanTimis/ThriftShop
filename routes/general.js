@@ -19,5 +19,4 @@ router.get('/cart/remove/:id', generalController.removeFromCart);
 router.get('/checkout', generalController.checkout);
 router.get('/checkout/success', generalController.checkout);
 
-router.get('/chatbot', generalController.chatbot);
 module.exports = router; 

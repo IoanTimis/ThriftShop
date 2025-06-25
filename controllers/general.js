@@ -131,10 +131,6 @@ const checkout = async (req, res) => {
     }
 };
 
-const chatbot = async (req, res) => {
-    res.render('pages/test/chatbot');
-}
-
 module.exports = {
     home,
     about,
@@ -145,5 +141,4 @@ module.exports = {
     addToCart,
     removeFromCart,
     checkout,
-    chatbot
 };
